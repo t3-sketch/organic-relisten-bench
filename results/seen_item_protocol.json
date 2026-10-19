@@ -1,0 +1,29 @@
+{
+  "auxiliary_only": true,
+  "main_results_modified": false,
+  "route": "C",
+  "lower_days": [
+    1,
+    3,
+    7,
+    14
+  ],
+  "selection": "same global observed-item set for every model; all routes and played ratios, not model-specific eligibility",
+  "selections": {
+    "matching_snapshot": "train29/evaluation149 catalog",
+    "seen_by_both": "intersection of29 and149 catalogs; scores still use original29/149 model assignment"
+  },
+  "train_cutoff_day": 29,
+  "evaluation_cutoff_day": 149,
+  "cutoff": "timestamp < (end_day+1)*86400; never use149-day vocab for train pairs",
+  "vocabulary_sizes": {
+    "29": 239652,
+    "149": 560043
+  },
+  "minimum_fraction": "score exactly equals minimum in unfiltered same task/split/L/model/seed; threshold fixed after filtering",
+  "fallback_fraction": "stored CF/SASRec cold flags or AudioCosine missing flag; null for models without explicit fallback",
+  "seed_aggregation": "per-user mean AUC over3 seeds, then1000-user bootstrap; minimum/fallback fractions averaged over seeds",
+  "auc_change": "restricted macro AUC minus original macro AUC; eligible user population may change",
+  "common_user_change": "separate paired user bootstrap on users eligible both before and after",
+  "train_rows": "descriptive training-cohort raw AUC, not the held-out main result"
+}

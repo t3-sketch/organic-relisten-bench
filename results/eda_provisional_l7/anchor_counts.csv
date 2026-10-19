@@ -1,0 +1,10 @@
+task,split,all_anchors,censored_anchors
+O2,test,612147,971
+O2,train,446511,0
+O2,validation,185295,0
+T1,test,1064545,300
+T1,train,437046,0
+T1,validation,523734,0
+T2,test,1100797,1013
+T2,train,848521,0
+T2,validation,325261,0

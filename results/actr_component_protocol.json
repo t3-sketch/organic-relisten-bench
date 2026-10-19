@@ -1,0 +1,27 @@
+{
+  "purpose": "post-result exploratory diagnosis; main nine models and L unchanged",
+  "task": "T2",
+  "S_only": "original all-route session lift followed by softmax",
+  "P_only": "original audio cosine against last strictly pre-anchor item followed by softmax",
+  "organic_SP": "fit sessions after filtering organic events; last organic context; organic-history candidates+target; no base-level in T2",
+  "raw_diagnostics": "unnormalized lift/cosine and candidate count use identical shared head; diagnostic only",
+  "missing_organic_context": "zero raw S/P; uniform softmax on candidate set",
+  "embedding": {
+    "file": "Yambda embeddings.parquet",
+    "column": "normalized_embed",
+    "dimensions": 128,
+    "kind": "L2-normalized audio CNN embeddings; same field as AudioCosine",
+    "cache_dtype": "float32"
+  },
+  "model_days": [
+    29,
+    149
+  ],
+  "lower_days": [
+    1,
+    3,
+    7,
+    14
+  ],
+  "reference_reconstruction": "S+P asserted equal to saved original for every pair and L"
+}

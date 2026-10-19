@@ -1,0 +1,24 @@
+{
+  "pid": 19077,
+  "status": "stopped_for_protocol_update",
+  "notebooks": [
+    "04_ials.ipynb",
+    "04_bpr.ipynb",
+    "04_sansa.ipynb",
+    "04_sasrec.ipynb",
+    "05_aux_analysis.ipynb",
+    "06_end_to_end.ipynb"
+  ],
+  "completed": [
+    "04_ials.ipynb",
+    "04_bpr.ipynb",
+    "04_sansa.ipynb",
+    "04_sasrec.ipynb"
+  ],
+  "started_at": "2026-10-17T03:33:51.504750+00:00",
+  "current": "05_aux_analysis.ipynb",
+  "updated_at": "2026-10-17T04:52:48.471424+00:00",
+  "stopped_children": [
+    66660
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "protected_files": 232,
+  "protected_unchanged": true,
+  "device": "mps",
+  "seconds": 1057.3549501670059,
+  "training_performed": false,
+  "model_epoch": 10,
+  "bootstrap_replicates": 1000,
+  "bootstrap_seed": 20261016,
+  "checkpoint_hashes": {
+    "data/processed/models/SASRec_e2e_l1.pt": "f087fae58a28ba6f7cb8aefa975748aad6829a5389d5c2b28efa9623dcc79185",
+    "data/processed/models/SASRec_e2e_l14.pt": "eee71a3d747277e1afe42019049be6cf80e2e4843ec607abc2352ae7687a0fc9",
+    "data/processed/models/SASRec_e2e_l3.pt": "ed580689bba517d40d8ea5f65acf931ce3980039da6940402a59cab4340b942b",
+    "data/processed/models/SASRec_e2e_l7.pt": "f403e0eb58fb1613b23becfa0fa10a6cfd8793e76ba071e31866c0572418929a"
+  },
+  "independent_auc_checks": [
+    {
+      "lower_days": 1,
+      "split": "train",
+      "subset": "all",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 1,
+      "split": "train",
+      "subset": "known",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 1,
+      "split": "test",
+      "subset": "all",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 1,
+      "split": "test",
+      "subset": "known",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 3,
+      "split": "train",
+      "subset": "all",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 3,
+      "split": "train",
+      "subset": "known",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 3,
+      "split": "test",
+      "subset": "all",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 3,
+      "split": "test",
+      "subset": "known",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 7,
+      "split": "train",
+      "subset": "all",
+      "checked_users": 20,
+      "max_abs_difference": 2.220446049250313e-16
+    },
+    {
+      "lower_days": 7,
+      "split": "train",
+      "subset": "known",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 7,
+      "split": "test",
+      "subset": "all",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 7,
+      "split": "test",
+      "subset": "known",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 14,
+      "split": "train",
+      "subset": "all",
+      "checked_users": 20,
+      "max_abs_difference": 2.220446049250313e-16
+    },
+    {
+      "lower_days": 14,
+      "split": "train",
+      "subset": "known",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 14,
+      "split": "test",
+      "subset": "all",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "lower_days": 14,
+      "split": "test",
+      "subset": "known",
+      "checked_users": 20,
+      "max_abs_difference": 1.1102230246251565e-16
+    }
+  ],
+  "environment": {
+    "python": "3.13.13",
+    "torch": "2.14.1",
+    "numpy": "2.5.4",
+    "polars": "1.44.2"
+  }
+}

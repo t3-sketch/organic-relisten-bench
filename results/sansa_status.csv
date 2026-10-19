@@ -1,0 +1,2 @@
+model,status,reason,source
+SANSA,not_run_resource_limit,Official 50M-listens README requires >=100GB RAM; host has24GB; 149-day memory unmeasured; no data/density reduction,https://huggingface.co/datasets/yandex/yambda/blob/dd6f3a19eef5866e346c3270e098baa641a44948/benchmarks/models/sansa/README.md

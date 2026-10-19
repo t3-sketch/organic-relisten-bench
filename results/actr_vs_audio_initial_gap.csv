@@ -1,0 +1,2 @@
+left_model,right_model,task,route,split,lower_days,paired_users,mean_auc_difference,difference_ci_low,difference_ci_high
+ACT-R,AudioCosine,T2,C,test,1,4124,-0.05134236096979317,-0.05705199542575592,-0.04527226388729706

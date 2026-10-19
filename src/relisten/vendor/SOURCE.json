@@ -1,0 +1,9 @@
+{
+  "repository": "https://huggingface.co/datasets/yandex/yambda",
+  "revision": "dd6f3a19eef5866e346c3270e098baa641a44948",
+  "license": "Apache-2.0",
+  "files": {
+    "sasrec_model.py": "benchmarks/models/sasrec/model.py (unchanged)",
+    "sasrec_data.py": "TrainDataset and collate_fn extracted unchanged from benchmarks/models/sasrec/data.py"
+  }
+}

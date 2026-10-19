@@ -1,0 +1,2 @@
+listens,users,items,min_timestamp,max_timestamp,organic_fraction,valid_routes,has_nulls
+46467212,9238,877168,0,26000000,0.5165719217240751,true,false

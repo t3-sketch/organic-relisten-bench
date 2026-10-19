@@ -1,0 +1,22 @@
+{
+  "auxiliary_only": true,
+  "main_results_modified": false,
+  "lower_days": 1,
+  "split": "test",
+  "raw_direction": "original higher-is-better; identical score column for B and C",
+  "cohorts": [
+    "all_pairs",
+    "matching_snapshot"
+  ],
+  "seen_cohort": "original shared raw catalog; matching29/149 deadline, test149",
+  "auc_unit": "per-user AUC over identical pairs, separately labeled B and C",
+  "paired_users": "intersection of users with positive and negative labels for both B and C; all their cohort pairs retained",
+  "seed_aggregation": "mean per-user AUC over3 seeds separately for B/C, then subtract, then user bootstrap",
+  "difference": "B minus C; positive favors B; no separate-user-population macro subtraction",
+  "bootstrap_replicates": 1000,
+  "seed": 20261016,
+  "confidence_interval": "95% percentile, unadjusted",
+  "rank_test": "Kendall tau-b on8 model families; A seed mean NDCG@10 versus known-item C mean user AUC",
+  "A_unchanged": "existing149-day representation and150-210 multi-positive holdout; A catalog/targets not re-filtered",
+  "rank_p_value": "two-sided scipy kendalltau, method auto; unadjusted across comparisons"
+}

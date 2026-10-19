@@ -1,0 +1,66 @@
+device=mps; loading fixed histories
+L=1 train: 0/755797
+L=1 train: 128000/755797
+L=1 train: 256000/755797
+L=1 train: 384000/755797
+L=1 train: 512000/755797
+L=1 train: 640000/755797
+{"lower_days": 1, "split": "train", "pairs": 755797, "known_pairs": 676289, "floor_pairs": 79508, "floor_fraction": 0.10519755966218443, "floor_positive_rate": 0.09844292398249233, "known_positive_rate": 0.08920446732092345, "known_score_minus_one_fraction": 0.05889493988516743, "known_score_plus_one_fraction": 0.0, "scale": 3.1869757175445557, "bias": -0.5516273379325867, "final_eval_bce": 0.14844021201133728}
+L=1 test: 0/967884
+L=1 test: 128000/967884
+L=1 test: 256000/967884
+L=1 test: 384000/967884
+L=1 test: 512000/967884
+L=1 test: 640000/967884
+L=1 test: 768000/967884
+L=1 test: 896000/967884
+{"lower_days": 1, "split": "test", "pairs": 967884, "known_pairs": 595248, "floor_pairs": 372636, "floor_fraction": 0.3850006818998971, "floor_positive_rate": 0.10721991433999936, "known_positive_rate": 0.08942995188560063, "known_score_minus_one_fraction": 0.017471709270757734, "known_score_plus_one_fraction": 0.0, "scale": 3.1869757175445557, "bias": -0.5516273379325867, "final_eval_bce": 0.4059235751628876, "saved_probability_max_abs_difference": 0.0, "saved_probability_exact_fraction": 1.0}
+L=3 train: 0/750812
+L=3 train: 128000/750812
+L=3 train: 256000/750812
+L=3 train: 384000/750812
+L=3 train: 512000/750812
+L=3 train: 640000/750812
+{"lower_days": 3, "split": "train", "pairs": 750812, "known_pairs": 671723, "floor_pairs": 79089, "floor_fraction": 0.10533795410835202, "floor_positive_rate": 0.09485516317060527, "known_positive_rate": 0.0869807941666431, "known_score_minus_one_fraction": 0.05751924528414242, "known_score_plus_one_fraction": 1.042096221210231e-05, "scale": 3.1461336612701416, "bias": -0.6113486289978027, "final_eval_bce": 0.15571527183055878}
+L=3 test: 0/958060
+L=3 test: 128000/958060
+L=3 test: 256000/958060
+L=3 test: 384000/958060
+L=3 test: 512000/958060
+L=3 test: 640000/958060
+L=3 test: 768000/958060
+L=3 test: 896000/958060
+{"lower_days": 3, "split": "test", "pairs": 958060, "known_pairs": 588868, "floor_pairs": 369192, "floor_fraction": 0.3853537356741749, "floor_positive_rate": 0.10441721380744978, "known_positive_rate": 0.08750687760245081, "known_score_minus_one_fraction": 0.012430629614786335, "known_score_plus_one_fraction": 1.698173444642942e-06, "scale": 3.1461336612701416, "bias": -0.6113486289978027, "final_eval_bce": 0.4136632978916168, "saved_probability_max_abs_difference": 0.0, "saved_probability_exact_fraction": 1.0}
+L=7 train: 0/739927
+L=7 train: 128000/739927
+L=7 train: 256000/739927
+L=7 train: 384000/739927
+L=7 train: 512000/739927
+L=7 train: 640000/739927
+{"lower_days": 7, "split": "train", "pairs": 739927, "known_pairs": 661793, "floor_pairs": 78134, "floor_fraction": 0.1055969034783161, "floor_positive_rate": 0.0901272173445619, "known_positive_rate": 0.08429372930810691, "known_score_minus_one_fraction": 0.1067856565421514, "known_score_plus_one_fraction": 0.0, "scale": 3.420483350753784, "bias": -0.4284932017326355, "final_eval_bce": 0.12124542891979218}
+L=7 test: 0/941925
+L=7 test: 128000/941925
+L=7 test: 256000/941925
+L=7 test: 384000/941925
+L=7 test: 512000/941925
+L=7 test: 640000/941925
+L=7 test: 768000/941925
+L=7 test: 896000/941925
+{"lower_days": 7, "split": "test", "pairs": 941925, "known_pairs": 578460, "floor_pairs": 363465, "floor_fraction": 0.38587467155028266, "floor_positive_rate": 0.09977576933129738, "known_positive_rate": 0.08434291048646406, "known_score_minus_one_fraction": 0.04817273450195346, "known_score_plus_one_fraction": 3.457456003872351e-06, "scale": 3.420483350753784, "bias": -0.4284932017326355, "final_eval_bce": 0.43583181500434875, "saved_probability_max_abs_difference": 0.0, "saved_probability_exact_fraction": 1.0}
+L=14 train: 0/719472
+L=14 train: 128000/719472
+L=14 train: 256000/719472
+L=14 train: 384000/719472
+L=14 train: 512000/719472
+L=14 train: 640000/719472
+{"lower_days": 14, "split": "train", "pairs": 719472, "known_pairs": 643337, "floor_pairs": 76135, "floor_fraction": 0.10582065737096093, "floor_positive_rate": 0.0841662835752282, "known_positive_rate": 0.07972959739607702, "known_score_minus_one_fraction": 0.04206038203927335, "known_score_plus_one_fraction": 0.0, "scale": 3.366384506225586, "bias": -0.511598527431488, "final_eval_bce": 0.13936865329742432}
+L=14 test: 0/905038
+L=14 test: 128000/905038
+L=14 test: 256000/905038
+L=14 test: 384000/905038
+L=14 test: 512000/905038
+L=14 test: 640000/905038
+L=14 test: 768000/905038
+L=14 test: 896000/905038
+{"lower_days": 14, "split": "test", "pairs": 905038, "known_pairs": 553779, "floor_pairs": 351259, "floor_fraction": 0.388115195163076, "floor_positive_rate": 0.09307092487309934, "known_positive_rate": 0.07908750602677242, "known_score_minus_one_fraction": 0.009113743930340442, "known_score_plus_one_fraction": 0.0, "scale": 3.366384506225586, "bias": -0.511598527431488, "final_eval_bce": 0.39294102787971497, "saved_probability_max_abs_difference": 0.0, "saved_probability_exact_fraction": 1.0}
+DONE; all protected hashes unchanged

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paper1-relisten"
+version = "0.1.0"
+description = "Yambda-50M 推薦後の自発再聴ベンチマーク"
+requires-python = ">=3.11"
+dependencies = ["duckdb>=1.4,<2", "polars>=1.35,<2", "numpy>=2,<3", "scipy>=1.15,<2", "scikit-learn>=1.6,<2", "pyarrow>=20", "matplotlib>=3.10,<4", "httpx>=0.28,<1", "nbformat>=5.10,<6", "nbclient>=0.10,<1", "ipykernel>=6", "pytest>=8,<10"]
+
+[project.optional-dependencies]
+official = ["implicit>=0.7,<1", "optuna>=4,<5", "torch>=2.6,<3"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

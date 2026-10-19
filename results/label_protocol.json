@@ -1,0 +1,25 @@
+{
+  "lower_days": 1,
+  "upper_days": 90,
+  "lower_inclusive": true,
+  "upper_inclusive": true,
+  "window_seconds": [
+    86400,
+    7776000
+  ],
+  "approved": true,
+  "approved_by": "TM",
+  "decision_date": "2026-10-16",
+  "reason": "EDA の規則に基づく候補は7だったが、「24時間以上空けても（一晩寝た後でも）自分から戻ってくる関心」をラベルの意味とするため、概念上の理由で1を採用する。モデルの結果を見る前の決定。",
+  "model_results_seen_before_decision": false,
+  "eda_candidate_lower_days": 7,
+  "required_sensitivity_lower_days": [
+    7,
+    14
+  ],
+  "sensitivity_lower_days": [
+    3,
+    7,
+    14
+  ]
+}

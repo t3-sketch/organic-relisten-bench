@@ -1,0 +1,25 @@
+{
+  "training_labels": "train only",
+  "scaler_fit": "train only",
+  "C": 1,
+  "solver": "lbfgs",
+  "max_iter": 1000,
+  "class_weight": null,
+  "tuning_on_validation": false,
+  "calibration": "shared logistic (Platt) head",
+  "pr_auc_definition": "average_precision",
+  "user_auc": "macro over users with both classes; ties use average ranks",
+  "bootstrap_unit": "user",
+  "bootstrap_replicates": 1000,
+  "seed": 20261016,
+  "head_model_cutoff_day": 29,
+  "eval_model_cutoff_day": 149,
+  "required_sensitivity_lower_days": [
+    7,
+    14
+  ],
+  "baseline_columns": [
+    "past_return_rate",
+    "past_active_days"
+  ]
+}

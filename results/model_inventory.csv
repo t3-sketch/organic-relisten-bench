@@ -1,0 +1,10 @@
+model,status,result,reason
+MostPop,completed,light_model_metrics.csv,""
+DecayPop,completed,light_model_metrics.csv,""
+ACT-R,completed,light_model_metrics.csv,""
+AudioCosine,completed,light_model_metrics.csv,""
+ItemKNN,completed,itemknn_model_metrics.csv,""
+iALS,completed,ials_model_metrics.csv,""
+BPR,completed,bpr_model_metrics.csv,""
+SASRec,completed,sasrec_model_metrics.csv,""
+SANSA,not_run_resource_limit,sansa_status.csv,Official 50M listens requires >=100GB RAM; host24GB.149-day memory unmeasured; no downscaling

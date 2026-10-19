@@ -1,0 +1,21 @@
+{
+  "task": "T2",
+  "route": "C",
+  "lower_days": [
+    1,
+    3,
+    7,
+    14
+  ],
+  "epochs": 10,
+  "initial_model_day": 29,
+  "label_training_days": [
+    30,
+    59
+  ],
+  "all_training_labels_mature_by_day": 149,
+  "evaluation_input": "strict pre-anchor eligible history + current recommendation once",
+  "score_link": "positive_scale * tanh(raw dot) + bias; cold score=-1.000001 before scale",
+  "tuning": "none;10 epochs,Adam0.001,batch256,seed42 fixed before this experiment",
+  "limitation": "29-day initialized model is used at evaluation too; main common-head uses day149. Difference includes representation-age effects and cannot isolate objective alone"
+}

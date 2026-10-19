@@ -1,0 +1,3 @@
+task,lower_days,selection,split,models,kendall_tau,p_value,c_pairs,c_auc_users
+T2,1,matching_snapshot,test,8,0.07142857142857142,0.9048611111111111,783315,3948
+T1,1,matching_snapshot,test,8,-0.07142857142857142,0.9048611111111111,966852,3932

@@ -1,0 +1,31 @@
+{
+  "task": [
+    "T2",
+    "T1"
+  ],
+  "route": "C",
+  "lower_days": 1,
+  "primary_protocol": "raw_score; higher is better as designed, no sign flip",
+  "secondary_protocols": [
+    "score_only",
+    "baseline_plus_score"
+  ],
+  "models": [
+    "ACT-R",
+    "AudioCosine",
+    "BPR",
+    "DecayPop",
+    "ItemKNN",
+    "MostPop",
+    "SASRec",
+    "iALS"
+  ],
+  "cohorts": "identical pair_id,uid,label_c across models and seeds asserted",
+  "bootstrap_unit": "user; sample paired per-user AUC differences with replacement",
+  "bootstrap_replicates": 1000,
+  "seed": 20261016,
+  "confidence_interval": "95% percentile; unadjusted",
+  "multiple_seeds": "average AUC within each user across all three seeds before differences",
+  "top_table": "top3 by test macro user AUC within each task/protocol; posthoc view of all pairs",
+  "interpretation": "positive difference favors left; interval containing0 does not establish superiority"
+}

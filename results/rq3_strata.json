@@ -1,0 +1,44 @@
+{
+  "activity": {
+    "column": "active_days_l1_h90",
+    "cuts": [
+      53.0,
+      68.0,
+      79.0
+    ],
+    "cohort": "test features only; no label-based boundary",
+    "descriptive_only": true
+  },
+  "popularity": {
+    "column": "mostpop",
+    "cuts": [
+      67.0,
+      276.0,
+      827.0
+    ],
+    "cohort": "test features only; no label-based boundary"
+  },
+  "history": {
+    "column": "history_length",
+    "cuts": [
+      2679.0,
+      5283.0,
+      8862.0
+    ],
+    "cohort": "test features only; no label-based boundary"
+  },
+  "closeness": {
+    "column": "audio_cosine",
+    "cuts": [
+      0.3802552595734596,
+      0.5174505412578583,
+      0.6474582254886627
+    ],
+    "cohort": "test features only; no label-based boundary"
+  },
+  "like": {
+    "window": "[anchor,anchor+24h]",
+    "descriptive_only": true,
+    "used_as_predictor": false
+  }
+}

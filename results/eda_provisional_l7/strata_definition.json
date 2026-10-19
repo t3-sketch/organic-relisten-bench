@@ -1,0 +1,10 @@
+{
+  "activity_quantiles": [
+    45.0,
+    63.0,
+    74.0
+  ],
+  "activity_window": "(7,90]",
+  "popularity_period": "0..29 days",
+  "positive_popularity_median": 81.0
+}

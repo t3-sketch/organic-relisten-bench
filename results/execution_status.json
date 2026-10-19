@@ -1,0 +1,17 @@
+{
+  "pid": 75760,
+  "status": "completed",
+  "notebooks": [
+    "04z_score_protocol.ipynb",
+    "05_aux_analysis.ipynb",
+    "06_end_to_end.ipynb"
+  ],
+  "completed": [
+    "04z_score_protocol.ipynb",
+    "05_aux_analysis.ipynb",
+    "06_end_to_end.ipynb"
+  ],
+  "started_at": "2026-10-17T05:00:45.840923+00:00",
+  "current": null,
+  "updated_at": "2026-10-17T10:49:55.929564+00:00"
+}

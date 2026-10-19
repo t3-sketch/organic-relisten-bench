@@ -1,0 +1,14 @@
+{
+  "fit_end_day": 149,
+  "target_days": [
+    150,
+    210
+  ],
+  "target_filter": "played_ratio_pct>=50",
+  "targets": "unique held-out items per user",
+  "users": "at least2 eligible pre150 listens",
+  "candidate_ranking": "full catalog, no sampled negatives; CF unknown items get minimum score",
+  "user_input": "frozen pre150 history; no post149 input",
+  "metric": "macro binary NDCG@10",
+  "note": "Yambda-style multi-positive temporal holdout, not per-event online next-track accuracy"
+}

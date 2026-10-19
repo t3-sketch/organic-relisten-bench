@@ -1,0 +1,12 @@
+{
+  "all_model_results.csv": "b5db8f0710a85e74d31042f341ae8c45735f3fef5718e0ace6d7558adaf1f233",
+  "main_test_results.csv": "dc28981843a56023ef5493f7107c808512c6e579a9fb59b79ffad41aa3b131b3",
+  "raw_score_model_metrics.csv": "9fa9805da1eaedf23b74b3c4121df2fcef6d3ae58ea37da677d4981499a1f99b",
+  "paired_model_differences.csv": "f7db54c3024688773a7b8decfac3bfeb8b14557e512c51f6609e4e86d3221556",
+  "top_model_paired_differences.csv": "d0eefa35718a1afcaf16e7d7bba805fca3d0339fd3c1a29b7e72c56cb434acb7",
+  "BENCHMARK_REPORT.md": "cb7a928bba40624ecb4e2bc63f9e8910fd48d8c0e9a63c76689d5f25499ac272",
+  "model_head_coefficients.csv": "6880b71356d03c33223a3b6849cff43fcc5bc1a2cd040c8f5e85cb8baf6df347",
+  "seen_item_auc_comparison.csv": "1f1cb1975f6e0f65654bac99988d2e241b6608986f13e5b491607066229512d0",
+  "abc_rank_summary.csv": "ef5f255fc4329576866f8ccac8f96c4967d50b7c117852fdf43fc19265d81b26",
+  "SUPPLEMENTARY_COMPARISON_REPORT.md": "289d9afa4250099bb0ced19faf176b12fa8f999c811fe001e7c20cbe175cf41f"
+}

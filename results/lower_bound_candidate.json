@@ -1,0 +1,13 @@
+{
+  "task": "T2",
+  "split": "train",
+  "cohort": "all complete-followup anchors; no activity selection",
+  "pairs": 848521,
+  "tail_daily_mean": 0.0005908448492083071,
+  "threshold": 0.0011816896984166141,
+  "crossing_day": 10,
+  "candidate_lower_days": 7,
+  "configured_lower_days": 1,
+  "approved": false,
+  "rounding": "nearest among 1,3,7,14; smaller value on ties"
+}

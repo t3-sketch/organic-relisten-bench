@@ -12,3 +12,6 @@ AGENTS.md
 docs/agent-retrospective/
 # large per-pair score dumps
 results/e2e_diagnostics/*.parquet
+
+# local runbooks (server-specific)
+research/RUNBOOK*

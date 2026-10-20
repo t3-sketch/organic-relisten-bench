@@ -176,6 +176,24 @@ We therefore report both views: all pairs (performance when deployed on new song
   ![Raw-score within-user AUC by label-window lower bound](results/figures/model_lower_bound_sensitivity.png)
 - **Training SASRec directly on label C** (end-to-end, auxiliary): it fit training pairs (AUC 0.823) but reached only 0.481 on test. Two factors were observed: 38.5% of test pairs fell outside the frozen day-29 vocabulary, and a large train–test gap remained within the vocabulary (0.924 vs 0.536). This covers one recipe only (10 epochs, one seed, frozen vocabulary).
 
+### Supplementary: relation to likes (added after results; definitions recorded before running)
+
+Using Yambda's like log (`likes.parquet`), we ran two checks on the main pairs (L = 1, test). Unlikes are not taken into account. Pairs whose track the user had already liked before the anchor form a separate group (prior like). Results are in `results/like_analysis/REPORT.md`.
+
+**Likes and organic relistening (P13).** Tracks liked within 90 days of the anchor are much more often relistened organically.
+
+| Task | Liked | Not liked | Within-user difference (95% CI) |
+| --- | ---: | ---: | --- |
+| T2 | 76.6% | 5.9% | +75.5 points (74.4–76.8) |
+| T1 | 80.9% | 15.6% | +67.3 points (66.2–68.5) |
+
+Most organic relistens, however, happen without a like (about 58% of C positives on T2 and 75% on T1). A like-based label would miss most of the returns users make on their own.
+A liked track enters the user's library, which may make organic replays easier. Yambda does not record which organic entry point was used, so we do not read this as a causal effect or as validation of preference.
+
+**Likes as an auxiliary label D (P14).** With the same raw scores, we predicted "liked within 90 days" on pairs without a prior like.
+On T2 only AudioCosine (0.559), SASRec (0.515) and ACT-R (0.510) exceed 0.5. iALS, BPR, ItemKNN and MostPop fall below 0.5, with intervals excluding it.
+Model rankings agree between D and C (T2 τ = 0.79, p = 0.006). No agreement was detected between D and next-item accuracy A (τ = −0.21, p = 0.55). Restricted to tracks seen in training, the D–C agreement drops to τ = 0.36 (p = 0.28).
+
 ## 5. What the results support
 
 **Supported**
@@ -199,7 +217,7 @@ We therefore report both views: all pairs (performance when deployed on new song
 | --- | --- |
 | Planned before results | Model comparison, label-window sensitivity, A/B/C ranking frame, end-to-end frame, conditional analysis (strata named in advance; boundaries set by test quartiles) |
 | Changed after results, recorded before re-aggregation | Primary metric moved from head-based AUC to raw-score AUC, because negative head coefficients flip rankings |
-| Added after results | Seen-track restriction, paired B − C, top-model paired differences, ACT-R component diagnostics, end-to-end diagnostics, 7-day activity diagnostic |
+| Added after results | Seen-track restriction, paired B − C, top-model paired differences, ACT-R component diagnostics, end-to-end diagnostics, 7-day activity diagnostic, relation to likes (P13, P14; definitions recorded before running) |
 
 All post-hoc analyses also ran on the test split. Per-decision notes with dates are in [DECISIONS.md](DECISIONS.md) (Japanese).
 

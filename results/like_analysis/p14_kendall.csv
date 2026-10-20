@@ -1,0 +1,49 @@
+task,split,selection,window,comparison,models,kendall_tau,p_value,minimum_d_auc_users,reference_only,a_reference,interpretation_limit
+T1,validation,all_pairs,like_90d,D_vs_C,8,0.3571428571428571,0.27509920634920637,1943,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,all_pairs,like_90d,D_vs_B,8,0.07142857142857142,0.9048611111111111,1943,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,all_pairs,like_90d,D_vs_A,8,-0.14285714285714285,0.7195436507936508,1943,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,all_pairs,like_24h,D_vs_C,8,0.42857142857142855,0.17886904761904762,1011,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,all_pairs,like_24h,D_vs_B,8,0.2857142857142857,0.39875992063492066,1011,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,all_pairs,like_24h,D_vs_A,8,-0.21428571428571427,0.5484126984126985,1011,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,matching_snapshot,like_90d,D_vs_C,8,0.3571428571428571,0.27509920634920637,1939,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,matching_snapshot,like_90d,D_vs_B,8,0.07142857142857142,0.9048611111111111,1939,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,matching_snapshot,like_90d,D_vs_A,8,-0.14285714285714285,0.7195436507936508,1939,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,matching_snapshot,like_24h,D_vs_C,8,0.42857142857142855,0.17886904761904762,1009,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,matching_snapshot,like_24h,D_vs_B,8,0.2857142857142857,0.39875992063492066,1009,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,validation,matching_snapshot,like_24h,D_vs_A,8,-0.21428571428571427,0.5484126984126985,1009,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,all_pairs,like_90d,D_vs_C,8,0.5714285714285714,0.06101190476190476,2765,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,all_pairs,like_90d,D_vs_B,8,0.5714285714285714,0.06101190476190476,2765,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,all_pairs,like_90d,D_vs_A,8,-0.2857142857142857,0.39875992063492066,2765,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,all_pairs,like_24h,D_vs_C,8,0.42857142857142855,0.17886904761904762,1701,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,all_pairs,like_24h,D_vs_B,8,0.42857142857142855,0.17886904761904762,1701,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,all_pairs,like_24h,D_vs_A,8,-0.2857142857142857,0.39875992063492066,1701,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,matching_snapshot,like_90d,D_vs_C,8,0.4999999999999999,0.10868055555555556,2735,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,matching_snapshot,like_90d,D_vs_B,8,0.4999999999999999,0.10868055555555556,2735,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,matching_snapshot,like_90d,D_vs_A,8,-0.21428571428571427,0.5484126984126985,2735,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,matching_snapshot,like_24h,D_vs_C,8,0.3571428571428571,0.27509920634920637,1670,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,matching_snapshot,like_24h,D_vs_B,8,0.3571428571428571,0.27509920634920637,1670,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T1,test,matching_snapshot,like_24h,D_vs_A,8,-0.21428571428571427,0.5484126984126985,1670,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,all_pairs,like_90d,D_vs_C,8,0.4999999999999999,0.10868055555555556,1830,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,all_pairs,like_90d,D_vs_B,8,0.5714285714285714,0.06101190476190476,1830,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,all_pairs,like_90d,D_vs_A,8,-0.07142857142857142,0.9048611111111111,1830,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,all_pairs,like_24h,D_vs_C,8,0.4999999999999999,0.10868055555555556,1067,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,all_pairs,like_24h,D_vs_B,8,0.5714285714285714,0.06101190476190476,1067,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,all_pairs,like_24h,D_vs_A,8,-0.07142857142857142,0.9048611111111111,1067,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,matching_snapshot,like_90d,D_vs_C,8,0.7857142857142856,0.005505952380952381,1735,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,matching_snapshot,like_90d,D_vs_B,8,0.7857142857142856,0.005505952380952381,1735,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,matching_snapshot,like_90d,D_vs_A,8,0.21428571428571427,0.5484126984126985,1735,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,matching_snapshot,like_24h,D_vs_C,8,0.7857142857142856,0.005505952380952381,1004,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,matching_snapshot,like_24h,D_vs_B,8,0.6428571428571428,0.03115079365079365,1004,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,validation,matching_snapshot,like_24h,D_vs_A,8,0.07142857142857142,0.9048611111111111,1004,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,all_pairs,like_90d,D_vs_C,8,0.7857142857142856,0.005505952380952381,2949,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,all_pairs,like_90d,D_vs_B,8,0.6428571428571428,0.03115079365079365,2949,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,all_pairs,like_90d,D_vs_A,8,-0.21428571428571427,0.5484126984126985,2949,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,all_pairs,like_24h,D_vs_C,8,0.7857142857142856,0.005505952380952381,2055,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,all_pairs,like_24h,D_vs_B,8,0.6428571428571428,0.03115079365079365,2055,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,all_pairs,like_24h,D_vs_A,8,-0.3571428571428571,0.27509920634920637,2055,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,matching_snapshot,like_90d,D_vs_C,8,0.3571428571428571,0.27509920634920637,2714,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,matching_snapshot,like_90d,D_vs_B,8,0.5714285714285714,0.06101190476190476,2714,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,matching_snapshot,like_90d,D_vs_A,8,-0.07142857142857142,0.9048611111111111,2714,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,matching_snapshot,like_24h,D_vs_C,8,0.2857142857142857,0.39875992063492066,1822,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,matching_snapshot,like_24h,D_vs_B,8,0.3571428571428571,0.27509920634920637,1822,false,same pairs; label-specific AUC users,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない
+T2,test,matching_snapshot,like_24h,D_vs_A,8,-0.2857142857142857,0.39875992063492066,1822,false,unchanged day149/holdout150-210 NDCG@10,8モデルで検出力が低い。非有意から無関係・不一致とは断定しない

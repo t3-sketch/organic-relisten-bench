@@ -1,0 +1,120 @@
+{
+  "registration": {
+    "recorded_at_utc": "2026-10-20T06:05:59.767933+00:00",
+    "p13_line": 235,
+    "p14_line": 247,
+    "end_line": 258,
+    "decisions_registered_sha256": "42ea83fd9e90e9282615112097109edda25803a4363cd481a8b268097f5b466c",
+    "original_prefix_sha256": "e92aaf2c3f8b9f21d6f8114c29fb3de9a06f0a1b30119595229050517a01a111",
+    "original_prefix_bytes": 50248,
+    "additional_like_analysis_auc_or_label_rates_computed_before_registration": false
+  },
+  "definition": {
+    "classification": "posthoc; recorded before P13/P14 label rates and AUC",
+    "P13": "same main L1 cohort; all T1/T2 train/validation/test; prior_like has group precedence",
+    "windows_seconds_closed": {
+      "like_90d": [
+        0,
+        7776000
+      ],
+      "like_24h": [
+        0,
+        86400
+      ]
+    },
+    "prior_like": "any observed same uid/item like with timestamp strictly before anchor; not current state",
+    "likes_routes": "all; repeated and duplicate events use existence OR",
+    "P13_reverse_denominators": [
+      "all C positives/window event including prior",
+      "all C positives/new-like group",
+      "nonprior C positives/new-like group"
+    ],
+    "P13_within_user": "nonprior users with both like/no-like pairs; equal-user C-rate difference; no both-C-classes condition",
+    "P14": "exclude prior; identical D/C/B pairs; unchanged eight raw score families; no fitting or head",
+    "P14_evaluation_splits": [
+      "validation",
+      "test"
+    ],
+    "P14_primary": {
+      "window": "like_90d",
+      "split": "test"
+    },
+    "matching_snapshot": "same all-route/all-play-ratio observed-item set: train29/evaluation149; no model-specific vocab",
+    "auc": "macro over users with both classes; ties=0.5; seed41/42/43 AUC averaged within user before bootstrap",
+    "paired": "D minus C; users with both AUCs defined; same pair counts; seed means before difference",
+    "bootstrap": {
+      "unit": "user",
+      "replicates": 1000,
+      "seed": 20261016,
+      "ci": "95% percentile; unadjusted"
+    },
+    "ranks": "Kendall tau-b, two-sided method=auto on8 families; C/B label-specific user populations on same pairs",
+    "A_reference": "unchanged day149 models, multi-positive NDCG@10 holdout150-210; not refiltered for validation/known tracks",
+    "support_gate": "before all new label rates/AUC: T2/test/all-pairs/nonprior/like90 positive users <500 stops",
+    "reference_threshold": "each marginal or paired AUC population <500 is reference-only",
+    "no_inputs_from_likes": true
+  },
+  "data_audit": {
+    "path": "data/raw/flat/50m/likes.parquet",
+    "schema": {
+      "uid": "UInt32",
+      "timestamp": "UInt32",
+      "item_id": "UInt32",
+      "is_organic": "UInt8"
+    },
+    "rows": 881456,
+    "users": 8283,
+    "items": 181304,
+    "min_timestamp": 80,
+    "max_timestamp": 25999970,
+    "all_multiples_of_5": true,
+    "unique_full_rows": 875051,
+    "unique_uid_item_timestamp": 875050,
+    "repeated_user_item_pairs": 27890,
+    "rows_in_repeated_pairs": 64656,
+    "extra_user_item_events": 36766,
+    "null_counts": {
+      "uid": 0,
+      "timestamp": 0,
+      "item_id": 0,
+      "is_organic": 0
+    },
+    "duplicate_full_rows": 6405,
+    "duplicate_uid_item_timestamp_rows": 6406,
+    "timestamp_unit": "seconds; multiples of 5; no multiplication by 5",
+    "timestamp_basis": "same Yambda flat revision and seconds convention as listens; DECISIONS.md:7-10,235-245",
+    "unlike_files": [],
+    "unlike_limitation": "取り消しは考慮できない",
+    "sha256": "694087077dbacfcc1d22a5ca85cc6bd8ab182361933406e60500624c6a422bc4"
+  },
+  "input_hashes": {
+    "data/processed/pairs.parquet": "2d69ed8315b7a9fe5af2c7aea386f907f65ce057543b615b80a4f3e6bce94563",
+    "data/processed/seen_item_diagnostics/pair_flags.parquet": "3074a34737dd9b3ee11299ddb3e8134853232258c94734b38d569b8f0af1a781",
+    "data/raw/flat/50m/likes.parquet": "694087077dbacfcc1d22a5ca85cc6bd8ab182361933406e60500624c6a422bc4",
+    "results/task_a_next_item.csv": "24d9a6932e27b4d730738f6d38e92e36d32e8a05dfd9e650b8d2f83d7959813d",
+    "results/main_test_results.csv": "dc28981843a56023ef5493f7107c808512c6e579a9fb59b79ffad41aa3b131b3",
+    "data/processed/light_features.parquet": "7e9807ab646f3ce7d8dd8f03470b22d180cadc5c0591fc296bd105bc13036c46",
+    "data/processed/ItemKNN_features.parquet": "f6bdde5b010d0f0b7b2db1edd28039e22875df3244d98c9591fdfa67f092b51f",
+    "data/processed/iALS_features.parquet": "052432660a802ef509041ea74299d6a14e44dc582fbd5fd0425f331a572a2c21",
+    "data/processed/BPR_features.parquet": "2bfdcb5f5112b0e9d0f77e82d554152ac90e1f047b9005000cfc030dd6596554",
+    "data/processed/SASRec_features.parquet": "9a9696d8177ae5439d197d358280a72a8ee8eafca3d27bf188a0c500dba46bdb"
+  },
+  "like_observation_limit": "last like event is not proof of collection end/completeness; original cohort retained",
+  "support_gate": {
+    "task": "T2",
+    "split": "test",
+    "selection": "all_pairs",
+    "window": "like_90d",
+    "d_positive_users": 2952,
+    "required_users": 500,
+    "status": "ready"
+  },
+  "execution": {
+    "elapsed_seconds": 33.9498219168745,
+    "protected_files": 2158,
+    "changed_protected_files": [],
+    "status": "ready",
+    "source_sha256": "561a051ef684f79958a1c64eec70504c52d784ea9e7420e5e3c51984c493eb15",
+    "metrics_sha256": "e4508a8ec4a1f284259842dfecc6f151adfb34c8ba90c71a42b65397b9303bf9"
+  }
+}

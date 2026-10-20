@@ -1,0 +1,15 @@
+{
+  "independent_sql_like_label_pairs": 2048,
+  "labels_all_equal": true,
+  "p13_strata_rows": 36,
+  "p14_auc_rows": 384,
+  "p14_paired_rows": 128,
+  "p14_tau_rows": 48,
+  "minimum_auc_users": 1004,
+  "minimum_paired_users": 969,
+  "notebook_code_cells": 8,
+  "notebook_errors": 0,
+  "tests": "17 passed",
+  "source_sha256": "561a051ef684f79958a1c64eec70504c52d784ea9e7420e5e3c51984c493eb15",
+  "tests_sha256": "931c4b3a2847d132a8dea2d17657a545dc84137f1ca0059298aa5d33718e5b30"
+}

@@ -1,0 +1,29 @@
+{
+  "purpose": "mainへの限定収録時の再現用記録検証の移植。分析定義・数値は変更なし",
+  "original_execution_source_sha256": "561a051ef684f79958a1c64eec70504c52d784ea9e7420e5e3c51984c493eb15",
+  "published_source_sha256": "d374abba4515cf8f6830b7bcdd153d78fde87f15da3a08975c57a7d941ea7d31",
+  "published_tests_sha256": "c84bf737c88b869f46731345f6fb49d28b42405ab207b18afacff4a61dfee1f4",
+  "registered_snapshot_sha256": "42ea83fd9e90e9282615112097109edda25803a4363cd481a8b268097f5b466c",
+  "recording_branch": "dataset-release",
+  "recording_branch_parent": "50c4ad428950662e51764cc27f09b0643a23bdd4",
+  "main_parent": "2ba3efd6a2cd2a17f459c1313df09b68e725782c",
+  "main_registration_locations": {
+    "p13_line": 226,
+    "p14_line": 238
+  },
+  "tests": "19 passed (17 existing analysis tests + 2 branch-portability cases)",
+  "new_training_or_analysis_executed": false,
+  "csv_sha256": {
+    "p13_reverse.csv": "225a09e1c3808afd134b61f3034f1822d0df3ed06a36989270fe0e08833b8c8c",
+    "p13_strata.csv": "5c67a9b6e4c74c29c08b60afe5aa443c3a15c6d2f7fd486fad3d10cc1a54786e",
+    "p13_user_differences.csv": "0b4735dcf6d761e9cc10cfcf457d1ffb4e01e255ef6c022717e5eb874a8a91a0",
+    "p13_within_user.csv": "614d9623ec43f52ae0046014817a7c3989c792e5efcec25ede45c91ce16e71c2",
+    "p14_auc.csv": "cab2d75bd262082f4423290dc368ff400a4667589fca4bd99b159e6d01706fbb",
+    "p14_kendall.csv": "92fc182202f67cf242aa644effbd72fd27e6db8aae0081e50549d56796c303bd",
+    "p14_paired_d_minus_c.csv": "e012f769f1358c7d1b55ae25e7ad823799a24a6fd64817962b2264eca4a570bd",
+    "p14_paired_user_auc.csv": "9fb0ce364636ef965b3a8c66a7cc263160317ff7dfcf500bf326e669fd1f9851",
+    "p14_primary_c_context.csv": "027ff706c48fb0fc2be59779977f8e46bfae8d3aaf1b14c33440445fbf1d4096",
+    "p14_rank_details.csv": "5f239da0d248442f0d37d04872a2031c53a273728509340008f1e46a82608900",
+    "support_gate.csv": "503d60ae63daca7128f224e8987814646fe8a37ab98c8fbf55e70b7c68923e7c"
+  }
+}

@@ -9,7 +9,7 @@ No new model is proposed. The contribution is the problem framing, the benchmark
 ## TL;DR
 
 - On first-time recommended songs (task T2), the best existing model predicts a later organic relisten with a **within-user AUC of 0.562** (AudioCosine; 95% CI 0.557–0.567). Collaborative filtering (iALS, ItemKNN) cannot be distinguished from chance (0.5).
-- **Next-item accuracy does not track organic relistening.** The model ranking by NDCG@10 does not agree with the ranking by organic relisten AUC (Kendall τ = −0.29, p = 0.40, 8 models). iALS ranks 1st on NDCG and 6th on organic relisten. AudioCosine ranks last and 1st.
+- **No agreement was found between next-item accuracy and organic relistening.** We could not detect agreement between the model ranking by NDCG@10 and the ranking by organic relisten AUC (Kendall τ = −0.29, p = 0.40, 8 models). iALS ranks 1st on NDCG and 6th on organic relisten. AudioCosine ranks last and 1st.
 - **Route-agnostic labels make models trained on all plays look better.** On the same pairs and users, counting any relisten (including ones the recommender played again) instead of organic ones raises the AUC of SASRec, BPR and iALS in all four settings we checked. For SASRec on T2 the gain is +0.036 (95% CI 0.032–0.040).
 - **Pooled (global) AUC mostly measures who comes back, not which song.** A per-user base rate alone reaches a global AUC of 0.608 on T2, higher than any model's raw score.
 - Results hold for label windows starting at 1, 3, 7 or 14 days: the top three models on T2 keep their order.
@@ -18,13 +18,13 @@ No new model is proposed. The contribution is the problem framing, the benchmark
 
 Music recommenders are usually trained and evaluated on whether the user plays the next item (Recall, NDCG on held-out listens).
 A play that follows a recommendation does not tell us whether the user liked the song or was only exposed to it.
-A stronger signal of value is whether the user returns to the song **through their own choice** (search, library, own playlist) weeks later.
+A stronger signal of value is whether the user returns to the song **through their own choice** (search, library, own playlist) later on.
 
 We identify three gaps in standard practice and measure each one.
 
 | Gap | What goes wrong | Evidence in this study |
 | --- | --- | --- |
-| Objective: next-item accuracy | It rewards predicting any play, including plays the recommender itself causes. | Model ranking by NDCG@10 does not agree with ranking by organic relisten (Finding 3). |
+| Objective: next-item accuracy | It rewards predicting any play, including plays the recommender itself causes. | No agreement was detected between model rankings by NDCG@10 and by organic relisten (Finding 3). |
 | Label: relisten regardless of route | Re-exposure by the recommender counts as a "return". | Models trained on all plays score higher on route-agnostic labels than on organic ones (Finding 4). |
 | Metric: pooled AUC | Users differ strongly in how often they return, so pooled AUC rewards predicting the user, not the song. | A per-user base rate alone reaches global AUC 0.608 on T2. We therefore use within-user AUC. |
 
@@ -101,6 +101,7 @@ The labeled pair table (`pairs.parquet`, 154 MB) is not committed. `notebooks/00
 
 - **Primary metric:** within-user ROC-AUC of each model's raw score (oriented so that higher means a better match). Users are weighted equally. 95% intervals come from a user-level bootstrap with 1,000 resamples.
 - **Hyperparameters:** each model follows its official search, tuned on its own next-item NDCG with the last day before the model cutoff as validation. The relisten labels are never used for tuning. SASRec uses the official fixed configuration. iALS and BPR are averaged over three seeds. The other models use one seed.
+- **Scoring inputs:** iALS, BPR, ItemKNN, MostPop and DecayPop are frozen at the model cutoff (day 29 for training pairs, day 149 for evaluation pairs) and do not see later history. SASRec, ACT-R and AudioCosine use the history up to just before each anchor. SASRec uses only plays with a played ratio of at least 50%, and appends the anchor track when the anchor play itself reaches 50%. Users or tracks unknown at the cutoff get each model's minimum score.
 - **SANSA** (in the plan) was not run. The official 50M recipe needs more than 100 GB of memory, and the machine has 24 GB. No reduced version was substituted.
 
 ## 4. Results
@@ -120,7 +121,7 @@ The labeled pair table (`pairs.parquet`, 154 MB) is not committed. `notebooks/00
 
 T2 test: 967,884 pairs, 4,124 users with both labels. T1 test: 982,716 pairs, 3,953 users.
 
-### Finding 1: existing models barely predict organic relistening of new songs
+### Finding 1: existing models predict organic relistening of new songs only weakly
 
 The best T2 AUC is 0.562. The 95% intervals of iALS and ItemKNN include 0.5, and BPR is slightly below it.
 The paired differences among the top three models exclude zero: AudioCosine − SASRec = +0.030 (0.023–0.038), SASRec − DecayPop = +0.012 (0.008–0.016).
@@ -132,7 +133,7 @@ These pairs were chosen after seeing the test ranking, and no multiple-compariso
 - On **known songs (T1)**, memory (recency and frequency, ACT-R) works best: ACT-R − ItemKNN = +0.056 (0.050–0.063).
 - Within T2, the winner changes by condition (`results/rq3_summary.csv`). Among tracks with a popularity signal, SASRec has the highest point estimate in every popularity quartile. On tracks with no popularity signal (20.2% of T2 test pairs), all collaborative, sequential and popularity models sit at 0.500, and only AudioCosine is above chance (0.590). This is consistent with AudioCosine's overall lead, but we did not estimate how much of the lead comes from this stratum.
 
-### Finding 3: next-item accuracy does not agree with organic relistening
+### Finding 3: no agreement detected between next-item accuracy and organic relistening
 
 | | Kendall τ (A vs C) | p |
 | --- | ---: | ---: |
@@ -144,7 +145,7 @@ A is NDCG@10 on a temporal holdout: trained on days ≤ 149, every track played 
 With 8 models this does not show that the two are unrelated. It shows that agreement could not be detected.
 B vs C, in contrast, agrees (τ = 0.64, p = 0.03).
 
-### Finding 4: route-agnostic labels inflate models trained on all plays
+### Finding 4: route-agnostic labels make models trained on all plays look better
 
 Paired difference AUC(B) − AUC(C), on the same pairs and the same users:
 
@@ -175,6 +176,24 @@ We therefore report both views: all pairs (performance when deployed on new song
   ![Raw-score within-user AUC by label-window lower bound](results/figures/model_lower_bound_sensitivity.png)
 - **Training SASRec directly on label C** (end-to-end, auxiliary): it fit training pairs (AUC 0.823) but reached only 0.481 on test. Two factors were observed: 38.5% of test pairs fell outside the frozen day-29 vocabulary, and a large train–test gap remained within the vocabulary (0.924 vs 0.536). This covers one recipe only (10 epochs, one seed, frozen vocabulary).
 
+### Supplementary: relation to likes (added after results; definitions recorded before running)
+
+Using Yambda's like log (`likes.parquet`), we ran two checks on the main pairs (L = 1, test). Unlikes are not taken into account. Pairs whose track the user had already liked before the anchor form a separate group (prior like). Results are in `results/like_analysis/REPORT.md`.
+
+**Likes and organic relistening (P13).** Tracks liked within 90 days of the anchor are much more often relistened organically.
+
+| Task | Liked | Not liked | Within-user difference (95% CI) |
+| --- | ---: | ---: | --- |
+| T2 | 76.6% | 5.9% | +75.5 points (74.4–76.8) |
+| T1 | 80.9% | 15.6% | +67.3 points (66.2–68.5) |
+
+Most organic relistens, however, happen without a like (about 58% of C positives on T2 and 75% on T1). A like-based label would miss most of the returns users make on their own.
+A liked track enters the user's library, which may make organic replays easier. Yambda does not record which organic entry point was used, so we do not read this as a causal effect or as validation of preference.
+
+**Likes as an auxiliary label D (P14).** With the same raw scores, we predicted "liked within 90 days" on pairs without a prior like.
+On T2 only AudioCosine (0.559), SASRec (0.515) and ACT-R (0.510) exceed 0.5. iALS, BPR, ItemKNN and MostPop fall below 0.5, with intervals excluding it.
+Model rankings agree between D and C (T2 τ = 0.79, p = 0.006). No agreement was detected between D and next-item accuracy A (τ = −0.21, p = 0.55). Restricted to tracks seen in training, the D–C agreement drops to τ = 0.36 (p = 0.28).
+
 ## 5. What the results support
 
 **Supported**
@@ -198,7 +217,7 @@ We therefore report both views: all pairs (performance when deployed on new song
 | --- | --- |
 | Planned before results | Model comparison, label-window sensitivity, A/B/C ranking frame, end-to-end frame, conditional analysis (strata named in advance; boundaries set by test quartiles) |
 | Changed after results, recorded before re-aggregation | Primary metric moved from head-based AUC to raw-score AUC, because negative head coefficients flip rankings |
-| Added after results | Seen-track restriction, paired B − C, top-model paired differences, ACT-R component diagnostics, end-to-end diagnostics, 7-day activity diagnostic |
+| Added after results | Seen-track restriction, paired B − C, top-model paired differences, ACT-R component diagnostics, end-to-end diagnostics, 7-day activity diagnostic, relation to likes (P13, P14; definitions recorded before running) |
 
 All post-hoc analyses also ran on the test split. Per-decision notes with dates are in [DECISIONS.md](DECISIONS.md) (Japanese).
 

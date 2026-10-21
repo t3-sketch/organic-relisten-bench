@@ -11,6 +11,7 @@ No new model is proposed. The contribution is the problem framing, the benchmark
 - On first-time recommended songs (task T2), the best existing model predicts a later organic relisten with a **within-user AUC of 0.562** (AudioCosine; 95% CI 0.557–0.567). Collaborative filtering (iALS, ItemKNN) cannot be distinguished from chance (0.5).
 - **No agreement was found between next-item accuracy and organic relistening.** We could not detect agreement between the model ranking by NDCG@10 and the ranking by organic relisten AUC (Kendall τ = −0.29, p = 0.40, 8 models). iALS ranks 1st on NDCG and 6th on organic relisten. AudioCosine ranks last and 1st.
 - **Route-agnostic labels make models trained on all plays look better.** On the same pairs and users, counting any relisten (including ones the recommender played again) instead of organic ones raises the AUC of SASRec, BPR and iALS in all four settings we checked. For SASRec on T2 the gain is +0.036 (95% CI 0.032–0.040).
+- **Likes miss most of the returns users make on their own.** Of T2 test tracks that were relistened organically, 57.7% have no like recorded before the anchor or within 90 days after it (post-hoc analysis).
 - **Pooled (global) AUC mostly measures who comes back, not which song.** A per-user base rate alone reaches a global AUC of 0.608 on T2, higher than any model's raw score.
 - Results hold for label windows starting at 1, 3, 7 or 14 days: the top three models on T2 keep their order.
 
@@ -20,17 +21,16 @@ Music recommenders are usually trained and evaluated on whether the user plays t
 A play that follows a recommendation does not tell us whether the user liked the song or was only exposed to it.
 A stronger signal of value is whether the user returns to the song **through their own choice** (search, library, own playlist) later on.
 
-We identify three gaps in standard practice and measure each one.
+Explicit likes are not enough. Among test tracks that were relistened organically, 57.7% on T2 and 75.2% on T1 have no like recorded either before the anchor or within 90 days after it. A like-based label would miss most of the returns users make on their own ([Supplementary: relation to likes](#supplementary-relation-to-likes-added-after-results-definitions-recorded-before-running)).
+
+We identify four gaps in standard practice and measure each one.
 
 | Gap | What goes wrong | Evidence in this study |
 | --- | --- | --- |
 | Objective: next-item accuracy | It rewards predicting any play, including plays the recommender itself causes. | No agreement was detected between model rankings by NDCG@10 and by organic relisten (Finding 3). |
+| Label: explicit likes | Organic returns that come without a like are not counted. | 57.7% of organic relistens on T2 come without a like (supplementary, post-hoc). |
 | Label: relisten regardless of route | Re-exposure by the recommender counts as a "return". | Models trained on all plays score higher on route-agnostic labels than on organic ones (Finding 4). |
 | Metric: pooled AUC | Users differ strongly in how often they return, so pooled AUC rewards predicting the user, not the song. | A per-user base rate alone reaches global AUC 0.608 on T2. We therefore use within-user AUC. |
-
-We also found a pitfall in calibrated evaluation.
-When each model's score is fed through a shared logistic head, a negative learned coefficient flips the model's ranking (T1 SASRec: raw 0.545, through the head 0.455).
-We therefore report raw scores as the primary metric and keep the head-based numbers as a secondary table.
 
 ## 2. The benchmark
 
@@ -56,27 +56,12 @@ Each instance is an **anchor**: a recommendation-driven listen (`is_organic = 0`
 ### Temporal split
 
 Days are calendar-day indices (`timestamp // 86400`).
+Models are trained on listens up to day 149 and evaluated on pairs anchored on days 165–210 (test).
+Features use only history before the anchor, and the label window uses only the future. Tests check window boundaries, invariance to future history, and the metrics.
 
-| Split | Anchor days | Score source |
-| --- | --- | --- |
-| Train | 30–59 | Models trained on listens up to day 29 |
-| Validation | 150–164 | Models trained on listens up to day 149 |
-| Test | 165–210 | Models trained on listens up to day 149 |
+Test size: T2 has 967,884 pairs (4,819 users, C positive rate 9.6%, B positive rate 43.2%). T1 has 982,716 pairs (4,485 users, 19.3%, 68.7%).
 
-Features use only history before the anchor, and the label window uses only the future.
-Separate model cutoffs for train and evaluation scores keep training labels from leaking into the scores.
-Tests check window boundaries, invariance to future history, and the metrics.
-
-### Size
-
-| Task | Split | Pairs | Users | C positive rate | B positive rate |
-| --- | --- | ---: | ---: | ---: | ---: |
-| T2 | train | 755,797 | 3,554 | 9.0% | 45.4% |
-| T2 | validation | 283,134 | 3,856 | 10.5% | 45.9% |
-| T2 | test | 967,884 | 4,819 | 9.6% | 43.2% |
-| T1 | train | 418,556 | 3,114 | 19.3% | 75.1% |
-| T1 | validation | 488,857 | 3,664 | 19.6% | 74.2% |
-| T1 | test | 982,716 | 4,485 | 19.3% | 68.7% |
+Pairs anchored on days 150–164 are kept as a validation split but are not used for tuning. Pairs anchored on days 30–59, scored by models trained up to day 29, are used only to choose the label-window lower bound and for secondary and auxiliary analyses (a shared logistic head, the end-to-end model and others). Scoring those pairs with day-149 models would put their target relistens into the models' training data, so the cutoffs are kept separate.
 
 B and C differ sharply (43% vs 10% on T2 test): most route-agnostic "returns" happen only because the recommender played the song again.
 
@@ -101,7 +86,7 @@ The labeled pair table (`pairs.parquet`, 154 MB) is not committed. `notebooks/00
 
 - **Primary metric:** within-user ROC-AUC of each model's raw score (oriented so that higher means a better match). Users are weighted equally. 95% intervals come from a user-level bootstrap with 1,000 resamples.
 - **Hyperparameters:** each model follows its official search, tuned on its own next-item NDCG with the last day before the model cutoff as validation. The relisten labels are never used for tuning. SASRec uses the official fixed configuration. iALS and BPR are averaged over three seeds. The other models use one seed.
-- **Scoring inputs:** iALS, BPR, ItemKNN, MostPop and DecayPop are frozen at the model cutoff (day 29 for training pairs, day 149 for evaluation pairs) and do not see later history. SASRec, ACT-R and AudioCosine use the history up to just before each anchor. SASRec uses only plays with a played ratio of at least 50%, and appends the anchor track when the anchor play itself reaches 50%. Users or tracks unknown at the cutoff get each model's minimum score.
+- **Scoring inputs:** iALS, BPR, ItemKNN, MostPop and DecayPop are frozen at the model cutoff (day 149) and do not see later history. SASRec, ACT-R and AudioCosine use the history up to just before each anchor. SASRec uses only plays with a played ratio of at least 50%, and appends the anchor track when the anchor play itself reaches 50%. Users or tracks unknown at the cutoff get each model's minimum score.
 - **SANSA** (in the plan) was not run. The official 50M recipe needs more than 100 GB of memory, and the machine has 24 GB. No reduced version was substituted.
 
 ## 4. Results
@@ -187,7 +172,7 @@ Using Yambda's like log (`likes.parquet`), we ran two checks on the main pairs (
 | T2 | 76.6% | 5.9% | +75.5 points (74.4–76.8) |
 | T1 | 80.9% | 15.6% | +67.3 points (66.2–68.5) |
 
-Most organic relistens, however, happen without a like (about 58% of C positives on T2 and 75% on T1). A like-based label would miss most of the returns users make on their own.
+Most organic relistens, however, happen without a like (57.7% of test C positives on T2 and 75.2% on T1 have no like recorded before the anchor or within 90 days after it). A like-based label would miss most of the returns users make on their own.
 A liked track enters the user's library, which may make organic replays easier. Yambda does not record which organic entry point was used, so we do not read this as a causal effect or as validation of preference.
 
 **Likes as an auxiliary label D (P14).** With the same raw scores, we predicted "liked within 90 days" on pairs without a prior like.
@@ -216,7 +201,7 @@ Model rankings agree between D and C (T2 τ = 0.79, p = 0.006). No agreement was
 | Status | Analyses |
 | --- | --- |
 | Planned before results | Model comparison, label-window sensitivity, A/B/C ranking frame, end-to-end frame, conditional analysis (strata named in advance; boundaries set by test quartiles) |
-| Changed after results, recorded before re-aggregation | Primary metric moved from head-based AUC to raw-score AUC, because negative head coefficients flip rankings |
+| Changed after results, recorded before re-aggregation | Primary metric moved from AUC through a shared logistic head to raw-score AUC (reasons in DECISIONS.md; old tables in `results/superseded_head_primary/`) |
 | Added after results | Seen-track restriction, paired B − C, top-model paired differences, ACT-R component diagnostics, end-to-end diagnostics, 7-day activity diagnostic, relation to likes (P13, P14; definitions recorded before running) |
 
 All post-hoc analyses also ran on the test split. Per-decision notes with dates are in [DECISIONS.md](DECISIONS.md) (Japanese).
@@ -232,7 +217,7 @@ All post-hoc analyses also ran on the test split. Per-decision notes with dates 
 ## 7. Limitations
 
 - Users are selected by future activity (30 or more active days in the window).
-- Train-time and evaluation-time representation models see different amounts of data (days 0–29 vs 0–149).
+- The secondary metrics and the end-to-end model are fit on scores from day-29 models, which see less data than the day-149 evaluation models.
 - ACT-R is weak at the pair level on T2. Its spreading-activation term is exactly zero for 86% of pairs. We did not separate the contributions of candidate-set normalisation, float32 precision and extreme lift.
 - Single seed for every model except iALS and BPR. Intervals and p-values are not corrected for multiple comparisons.
 - One dataset: Yambda-50M.
@@ -249,7 +234,7 @@ docs/results_factsheet.md   every reported number traced to a CSV row (Japanese)
 DECISIONS.md       dated implementation decisions and verification notes (Japanese)
 ```
 
-Key result files: `results/main_test_results.csv` (main table), `results/all_model_results.csv` (L sensitivity), `results/rq3_summary.csv` (conditional analysis), `results/seen_item_auc_comparison.csv` and `results/abc_rank_summary.csv` (seen tracks, A/B/C), `results/paired_b_minus_c.csv` (Finding 4), `results/sasrec_end_to_end_metrics.csv` (end-to-end).
+Key result files: `results/main_test_results.csv` (main table), `results/all_model_results.csv` (L sensitivity), `results/rq3_summary.csv` (conditional analysis), `results/seen_item_auc_comparison.csv` and `results/abc_rank_summary.csv` (seen tracks, A/B/C), `results/paired_b_minus_c.csv` (Finding 4), `results/sasrec_end_to_end_metrics.csv` (end-to-end), `results/like_analysis/` (likes, P13 and P14).
 
 ## 9. Reproduce
 
@@ -273,6 +258,7 @@ Then run the notebooks in order with the `Paper 1 (.venv)` kernel:
 6. `04z_score_protocol` computes the raw-score AUC (primary) and the head-based secondary metrics.
 7. `05_aux_analysis`, `05b_seen_items_and_rank_summary` and `05c_paired_routes` produce the A/B/C rankings, conditional analysis, seen-track restriction and paired B − C.
 8. `06_end_to_end` trains SASRec directly on label C (auxiliary).
+9. `07_like_analysis` runs the post-hoc like analyses (P13, P14).
 
 `scripts/run_notebooks.py` runs the notebooks headlessly and saves them in place. iALS, BPR and SASRec checkpoint and resume after interruption.
 Reference hardware: Apple Silicon Mac mini with 24 GB RAM, no CUDA. SASRec uses PyTorch MPS.
